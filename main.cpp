@@ -1,31 +1,50 @@
-#include <iostream>
 #include <stdlib.h>
-#include <cstdlib>
 #include <time.h>
 
-using std::cout;
-using std::endl;
+#include <iostream>
+#include <cstdlib>
 
 int main()
 {
-    // srand(time(NULL));
+    std::srand(time(NULL));
 
-    int n = 10;
-    int *Arr_ini = (int *)calloc(n, sizeof(int));
-    int N = 100;
-    for (int i = 0; i < 5; i++)
-        cout << std::rand() % N << " ";
-    cout << endl;
-    for (int i = 0; i < 5; i++)
-        cout << (rand() % (N - 0 + 1)) + 0 << " ";
+    int n = 10; // <1s -> 10k / 35s -> 100,000 lol
+    int m = 0;
+    int f[n];
+    int *l = (int *)calloc(n, sizeof(int));
+
     for (int i = 0; i < n; i++)
+        l[i] = i;
+    while (n > 0)
     {
-        Arr_ini[i] = i;
-        // int *Arr_tmp1 = (int *)calloc(n - 1, sizeof(int));
-        // int *Arr_tmp2 = (int *)calloc(n, sizeof(int));
+        int r = std::rand() % n;
+        int A[r];
+        int B[n - r];
 
-        // cout << Arr_ini[i] << endl;
+        f[m++] = l[r];
+
+        for (int i = 0; i < r; i++)
+            A[i] = l[i];
+        for (int i = r + 1; i < n; i++)
+            B[n - 1 - i] = l[i];
+
+        l = (int *)realloc(l, --n * sizeof(int));
+
+        for (int i = 0; i < r; i++)
+            l[i] = A[i];
+        for (int i = r; i < n; i++)
+            l[i] = B[n - 1 - i];
+
+        // for (int i = 0; i < n; i++)
+        //     std::cout << l[i];
+        // std::cout << std::endl;
     }
-    free(Arr_ini);
+
+    std::cout << "popped: ";
+    for (auto &fi : f)
+        std::cout << fi << ",";
+    std::cout << std::endl;
+
+    free(l);
     return 0;
 }
