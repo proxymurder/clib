@@ -59,19 +59,24 @@ void pop(int &n, int *(&l), int &p)
 {
     int r = rand() % n;
     int R[n - r];
+
     p = l[r];
+
     for (int i = r; i < n; i++)
         l[i] = R[n - i] = l[i + 1];
+
     l = (int *)realloc(l, --n * sizeof(int));
 }
 
 void poprand(int n, int *a)
 {
+    const int m = n;
     int *l = (int *)calloc(n, sizeof(int));
-    int m = 0;
+
     for (int i = 0; i < n; i++)
         l[i] = a[i];
     while (n > 0)
-        pop(n, l, a[m++]);
+        pop(n, l, a[m - n]);
+
     free(l);
 }
