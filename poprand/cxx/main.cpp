@@ -3,30 +3,30 @@
 #include <sys/time.h>
 #include <time.h>
 
-#define N 10
-#define S (10 + N / 10)
-#define BREAKCOL i % S != 0 ? "" : "\n"
-#define BREAKROW i != n - 1 ? "," : "\n}\n"
+#define N 100
+#define S (10 + n / 10)
+#define BREAKCOL ((i % S) != 0) ? "" : "\n"
+#define BREAKROW (i != n - 1) ? "," : "\n}\n"
 
 #define T 1
-#define TIMEOF(t) gettimeofday(&t, __null)
+#define TIMEOF(t) gettimeofday(&t, NULL)
 #define TSPEED(i, f, callback) \
     TIMEOF(i);                 \
     callback;                  \
     TIMEOF(f);
 
 float dt_ms(struct timeval i, struct timeval f);
-void dump(int n, int *a, const char *tag = __null);
+void dump(int n, int *a, const char *tag = NULL);
 
 void pop(int &n, int *(&l), int &p);
 void poprand(int n, int *a);
 
 int main()
 {
-    srand(time(__null));
+    srand(time(NULL));
     struct timeval ti, tf;
 
-    int n = 10;
+    int n = N;
     int a[n];
 
     for (int i = 0; i < n; i++)
@@ -39,7 +39,7 @@ int main()
     poprand(n, a);
 #endif
 
-    if (n <= 100)
+    if (n <= 1000)
         dump(n, a, "a[n]");
     return 0;
 }
