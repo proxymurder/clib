@@ -4,9 +4,9 @@
 #include <time.h>
 
 #define N 100
-#define S (10 + n / 10)
+#define S 10
 #define BREAKCOL ((i % S) != 0) ? "" : "\n"
-#define BREAKROW (i != n - 1) ? "," : "\n}\n"
+#define BREAKROW (i != n - 1) ? "\t" : "\n"
 
 #define T 1
 #define TIMEOF(t) gettimeofday(&t, NULL)
@@ -16,7 +16,7 @@
     TIMEOF(f);
 
 float dt_ms(struct timeval i, struct timeval f);
-void dump(int n, int *a, const char *tag = NULL);
+void dump(int n, int *a);
 
 void pop(int &n, int *(&l), int &p);
 void poprand(int n, int *a);
@@ -40,7 +40,7 @@ int main()
 #endif
 
     if (n <= 1000)
-        dump(n, a, "a[n]");
+        dump(n, a);
     return 0;
 }
 
@@ -49,9 +49,8 @@ float dt_ms(struct timeval i, struct timeval f)
     return ((f.tv_sec - i.tv_sec) * 1000000.0f) + ((f.tv_usec - i.tv_usec) / 1000.0f);
 }
 
-void dump(int n, int *a, const char *tag)
+void dump(int n, int *a)
 {
-    printf("%s => {", tag);
     for (int i = 0; i < n; i++)
         printf("%s%i%s", BREAKCOL, a[i], BREAKROW);
 }
