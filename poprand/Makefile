@@ -1,8 +1,8 @@
-NAME=rpop
+NAME=popran
 all: cleanup build crun
 
 build:
-	g++ main.cpp -o $(NAME)
+	gcc main.c -o $(NAME)
 
 cleanup:
 	rm -f $(NAME)
