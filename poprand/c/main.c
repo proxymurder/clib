@@ -65,7 +65,7 @@ void pop(int *n, int l[], int *p)
     for (int i = r; i < *n; i++)
         l[i] = R[*n - i] = l[i + 1];
 
-    l = realloc(l, --*n * sizeof(int));
+    l = realloc(l, --(*n) * sizeof(int));
 }
 void poprand(int n, int a[])
 {
