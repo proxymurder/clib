@@ -2,7 +2,8 @@ CFLAGS=-Wall -Wextra
 MAIN=main.c
 OUT=build/watchd
 
-FILE=/abs/path/to/file
+DIR=$(PWD)/watchdir
+FILE=${DIR}/watchfile
 
 all: clean out run
 
@@ -14,4 +15,4 @@ out:
 	gcc ${CFLAGS} ${MAIN} -o ${OUT}
 
 run:
-	./${OUT} ${FILE}
+	./${OUT} ${FILE}	
