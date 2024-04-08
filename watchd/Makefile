@@ -1,9 +1,9 @@
 CFLAGS=-Wall -Wextra
-MAIN=main.c
+MAIN=src/main.c
 OUT=build/watchd
 
-DIR=$(PWD)/watchdir
-FILE=${DIR}/watchfile
+DIR=$(PWD)/test/watch_this_dir
+FILE=${DIR}/file
 
 all: clean out run
 
